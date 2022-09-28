@@ -1,0 +1,15 @@
+server:
+  port: 9090
+spring:
+  redis:
+    database: 12
+    host: 117.50.162.61
+    port: 6379
+    password: tomxun@redis
+rpc:
+  remote:
+    ip: 127.0.0.1
+    port: 8989
+  registryAddress: 127.0.0.1:2181
+
+
