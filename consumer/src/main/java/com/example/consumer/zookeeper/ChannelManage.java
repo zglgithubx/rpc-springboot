@@ -66,7 +66,7 @@ public class ChannelManage {
 		for (final SocketAddress serverNodeAddress : newAllServerNodeSet) {
 			Channel channel = channelNodes.get(serverNodeAddress);
 			if (channel!=null && channel.isOpen()){
-				log.info("当前服务节点已存在,无需重新连接.{}",serverNodeAddress);
+				log.info("当前服务节点已存在,无需重新连接{}",serverNodeAddress);
 			}else{
 				connectServerNode(serverNodeAddress);
 			}

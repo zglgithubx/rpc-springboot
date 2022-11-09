@@ -35,6 +35,7 @@ public class ServiceDiscovery {
 	public void init(){
 		client = connectServer();
 		if (client != null) {
+			System.out.println("我被执行了");
 			watchNode(client);
 		}
 	}
@@ -44,6 +45,7 @@ public class ServiceDiscovery {
 		return client;
 	}
 	private void watchNode(final ZkClient client) {
+		//subscribeChildChanges() 监听当前节点和下面子节点的新增、删除
 		List<String> nodeList = client.subscribeChildChanges(ZK_REGISTRY_PATH, (s, nodes) -> {
 			log.info("监听到子节点数据变化{}", JSONObject.toJSONString(nodes));
 			addressList.clear();

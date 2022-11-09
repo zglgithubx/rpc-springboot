@@ -11,7 +11,7 @@ import io.netty.handler.codec.MessageToByteEncoder;
  *
  * +--------+----------------+
  * | Length |  Content       |
- * |  4字节 |   Length个字节  |
+ * |  4字节  |   Length个字节  |
  * +--------+----------------+
  */
 public class JsonEncoder extends MessageToByteEncoder<Object> {
@@ -23,6 +23,5 @@ public class JsonEncoder extends MessageToByteEncoder<Object> {
 		out.writeInt(bytes.length);
 		// 写入消息体
 		out.writeBytes(bytes);
-
 	}
 }

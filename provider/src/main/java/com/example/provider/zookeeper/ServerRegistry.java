@@ -22,16 +22,12 @@ public class ServerRegistry {
 
 	public void register(String data) {
 		if (data != null) {
-			ZkClient client = connectServer();
+			ZkClient client =new ZkClient(registryAddress,20000,20000);
 			if (client != null) {
 				AddRootNode(client);
 				createNode(client, data);
 			}
 		}
-	}
-	private ZkClient connectServer() {
-		ZkClient client = new ZkClient(registryAddress,20000,20000);
-		return client;
 	}
 
 	private void AddRootNode(ZkClient client){
@@ -43,6 +39,7 @@ public class ServerRegistry {
 	}
 
 	private void createNode(ZkClient client, String data) {
+		//data为服务的地址127.0.0.1:8989
 		String path = client.create(ZK_REGISTRY_PATH + "/provider", data, ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL_SEQUENTIAL);
 		log.info("创建zookeeper数据节点 ({} => {})", path, data);
 	}
