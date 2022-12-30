@@ -44,12 +44,14 @@ public class NettyClient {
 
 	@PostConstruct
 	public void init(){
+		System.out.println("启动netty客户端");
 		bootstrap.group(group)
 				.channel(NioSocketChannel.class)
 				.handler(new ChannelInitializer<SocketChannel>() {
 					@Override
 					protected void initChannel(SocketChannel channel) throws Exception {
 						ChannelPipeline pipeline = channel.pipeline();
+						//心跳机制
 						pipeline.addLast(new IdleStateHandler(0, 0, 10));
 						pipeline.addLast(new JsonEncoder());
 						pipeline.addLast(new JsonDecoder());

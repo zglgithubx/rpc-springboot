@@ -10,8 +10,9 @@ import org.springframework.stereotype.Component;
 public class RpcBeanDefinitionRegistryPostProcessor implements BeanDefinitionRegistryPostProcessor {
     @Override
     public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws BeansException {
+        System.out.println("1.postProcessBeanDefinitionRegistry");
         RpcScanner rpcScanner = new RpcScanner(registry);
-        rpcScanner.scan("com.example.common.service");
+        rpcScanner.scan("com.example.consumer.remote");
     }
 
     @Override

@@ -19,9 +19,12 @@ public class RpcScanner extends ClassPathBeanDefinitionScanner {
     @Override
     protected Set<BeanDefinitionHolder> doScan(String... basePackages) {
         Set<BeanDefinitionHolder> beanDefinitionHolders = super.doScan(basePackages);
+        System.out.println("2.doScan");
         for (BeanDefinitionHolder beanDefinitionHolder : beanDefinitionHolders) {
             GenericBeanDefinition beanDefinition = (GenericBeanDefinition)beanDefinitionHolder.getBeanDefinition();
+            System.out.println("beanDefinition.getBeanClassName()："+beanDefinition.getBeanClassName());
             beanDefinition.getConstructorArgumentValues().addGenericArgumentValue(beanDefinition.getBeanClassName());
+            System.out.println("RpcFactoryBean.class.getName()："+RpcFactoryBean.class.getName());
             beanDefinition.setBeanClassName(RpcFactoryBean.class.getName());
         }
         return beanDefinitionHolders;

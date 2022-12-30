@@ -52,7 +52,7 @@ public class NettyServer implements ApplicationContextAware, InitializingBean {
 			Object bean = entry.getValue();
 			Class<?>[] interfaces = bean.getClass().getInterfaces();
 			for (Class<?> inter : interfaces) {
-				rpcServices.put(inter.getName(),  bean);
+				rpcServices.put(inter.getSimpleName(),  bean);
 			}
 		}
 		log.info("加载RPC服务数量:{}", rpcServices.size());
@@ -95,6 +95,5 @@ public class NettyServer implements ApplicationContextAware, InitializingBean {
 				workerGroup.shutdownGracefully();
 			}
 		}).start();
-
 	}
 }

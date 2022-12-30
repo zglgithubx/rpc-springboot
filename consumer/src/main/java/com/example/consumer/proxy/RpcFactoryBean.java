@@ -17,11 +17,14 @@ public class RpcFactoryBean<T> implements FactoryBean<T> {
 
     @Override
     public T getObject(){
+        //获取某个类的代理对象
+        System.out.println("4.getObject");
         return (T) Proxy.newProxyInstance(interfaceClass.getClassLoader(), new Class[]{interfaceClass}, rpcFactory);
     }
 
     @Override
     public Class<?> getObjectType() {
+        System.out.println("3.getObjectType");
         return interfaceClass;
     }
 }

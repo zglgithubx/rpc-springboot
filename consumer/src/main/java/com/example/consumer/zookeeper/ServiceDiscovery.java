@@ -35,7 +35,7 @@ public class ServiceDiscovery {
 	public void init(){
 		client = connectServer();
 		if (client != null) {
-			System.out.println("我被执行了");
+			System.out.println("开始连接服务端");
 			watchNode(client);
 		}
 	}

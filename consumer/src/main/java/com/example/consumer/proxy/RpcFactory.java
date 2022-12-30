@@ -18,8 +18,10 @@ public class RpcFactory<T> implements InvocationHandler {
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws InterruptedException {
+        System.out.println("invoke");
         RpcRequest rpcRequest = new RpcRequest();
-        rpcRequest.setClassName(method.getDeclaringClass().getName());
+        rpcRequest.setClassName(method.getDeclaringClass().getSimpleName());
+        System.out.println(method.getDeclaringClass().getName());
         rpcRequest.setMethodName(method.getName());
         rpcRequest.setParameters(args);
         rpcRequest.setParameterTypes(method.getParameterTypes());

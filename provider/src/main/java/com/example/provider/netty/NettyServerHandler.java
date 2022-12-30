@@ -2,6 +2,7 @@ package com.example.provider.netty;
 
 import com.example.common.entity.RpcRequest;
 import com.example.common.entity.RpcResponse;
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.timeout.IdleState;
@@ -17,6 +18,7 @@ import java.util.Map;
  * @Date 2022/09/27 10:39
  */
 @Slf4j
+@ChannelHandler.Sharable
 public class NettyServerHandler extends ChannelInboundHandlerAdapter {
 	private Map<String, Object> rpcServices;
 
@@ -79,6 +81,7 @@ public class NettyServerHandler extends ChannelInboundHandlerAdapter {
 	}
 
 	private Object handleRequest(RpcRequest rpcRequest) throws Exception{
+		System.out.println(rpcServices.toString());
 		Object bean = rpcServices.get(rpcRequest.getClassName());
 		if(bean == null){
 			throw new RuntimeException("未找到对应的服务: " + rpcRequest.getClassName());
